@@ -9,15 +9,15 @@ INSERT INTO usuario (nome, email, senha, pontos_totais) VALUES
 ('Beatriz Lopes', 'beatriz@gmail.com', '123', 260);
 
 INSERT INTO estabelecimento (nome, endereco, descricao, tipo) VALUES
-('Parque das Nações Indígenas', 'Parque das Nações Indigenas, Av. Afonso Pena, Campo Grande - MS', 
+('Parque das Nações Indígenas', 'Av. Afonso Pena, Campo Grande - MS', 
  'Um dos maiores parques urbanos da América Latina, ideal para lazer e contato com a natureza.', 
  'Parque Urbano'),
 
-('Recanto Ecológico Rio da Prata', 'Recanto Ecológico Rio da Prata, Jardim - MS', 
+('Recanto Ecológico Rio da Prata', 'Rodovia Bonito/Jardim - MS', 
  'Famoso passeio de flutuação em águas cristalinas, com vasta biodiversidade.', 
  'Ecoturismo'),
 
-('Buraco das Araras', 'Buraco das Araras Jardim - MS', 
+('Buraco das Araras', 'Jardim - MS', 
  'Enorme dolina com centenas de araras vermelhas; ponto turístico muito procurado.', 
  'Natureza'),
 
