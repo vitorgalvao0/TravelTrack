@@ -37,7 +37,7 @@
 <div class="list-group mb-4">
   <?php foreach ($ranking as $r): ?>
     <div class="list-group-item d-flex justify-content-between align-items-center">
-      <div><strong><?php echo $r['name']; ?></strong> <small class="text-muted">Top</small></div>
+      <div><strong><?php echo $r['nome']; ?></strong> <small class="text-muted">Top</small></div>
       <div class="fw-bold"><?php echo $r['total']; ?> pts</div>
     </div>
   <?php endforeach; ?>
