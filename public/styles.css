@@ -1,0 +1,18 @@
+:root{--green:#2fae68;--green-2:#1f8f50;--muted:#6b7280}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;background:linear-gradient(180deg,#f6fff6,white)}
+.logo-circle{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--green),var(--green-2));display:flex;align-items:center;justify-content:center;color:#fff}
+.brand-text{font-weight:700;color:var(--green-2)}
+.auth-card{max-width:420px;background:#fff;padding:22px;border-radius:12px;box-shadow:0 8px 30px rgba(15,23,42,0.06)}
+.points-badge{background:linear-gradient(90deg,var(--green),var(--green-2));color:#fff;padding:10px 16px;border-radius:999px;font-weight:700}
+.points-badge span{background:rgba(255,255,255,0.15);padding:6px 10px;border-radius:999px;margin-left:8px}
+.place-card{border-radius:12px;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease}
+.place-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(15,23,42,0.08)}
+.place-detail-card{border-radius:14px;overflow:hidden}
+.card-img-top{height:180px;object-fit:cover}
+.img-fluid{object-fit:cover}
+.badge{border-radius:8px}
+.list-group-item{border-radius:8px;margin-bottom:8px}
+footer{background:transparent}
+
+/* responsive tweaks */
+@media (max-width:768px){.card-img-top{height:140px}}
