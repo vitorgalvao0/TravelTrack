@@ -80,4 +80,22 @@ class UserModel
             return false;
         }
     }
+    public function update($id, $data)
+    {
+        try {
+            $stmt = $this->db->prepare('UPDATE usuario SET nome = :name, email = :email, logradouro = :logradouro, numero_casa = :numero_casa, cidade = :city, uf = :state, cep = :cep WHERE id_usuario = :id');
+            return $stmt->execute([
+                'id' => $id,
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'logradouro' => $data['logradouro'],
+                'numero_casa' => $data['numero_casa'],
+                'city' => $data['city'],
+                'state' => $data['state'],
+                'cep' => $data['cep'],
+            ]);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }

@@ -20,13 +20,18 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navmenu">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto" style="gap: 0.5rem;">
         <li class="nav-item"><a class="nav-link" href="index.php?page=places">Locais</a></li>
         <li class="nav-item"><a class="nav-link" href="index.php?page=rewards">Recompensas</a></li>
         <li class="nav-item"><a class="nav-link" href="index.php?page=history">Histórico</a></li>
         <li class="nav-item"><a class="nav-link" href="index.php?page=qr">QR</a></li>
         <?php if (!empty($_SESSION['user_id'])): ?>
-          <li class="nav-item"><a class="nav-link" href="index.php?page=admin">Admin</a></li>
+          <?php 
+            $user = (new UserModel())->findById($_SESSION['user_id']);
+            if ($user['is_admin']):?>
+            <li class="nav-item"><a class="nav-link" href="index.php?page=admin">Admin</a></li>
+          <?php endif; ?>
+          <li class="nav-item"><a class="nav-link" href="index.php?page=profile">Perfil</a></li>
           <li class="nav-item"><a class="nav-link" href="#" id="logoutBtn">Sair</a></li>
         <?php else: ?>
           <li class="nav-item"><a class="nav-link" href="index.php?page=login">Entrar</a></li>
@@ -36,3 +41,16 @@
   </div>
 </nav>
 <main class="container py-4">
+<?php if (!empty($_SESSION['flash'])): ?>
+  <div aria-live="polite" aria-atomic="true" style="position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 300px;">
+    <div class="toast show align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          <?= htmlspecialchars($_SESSION['flash']) ?>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+  <?php unset($_SESSION['flash']); ?>
+<?php endif; ?>
