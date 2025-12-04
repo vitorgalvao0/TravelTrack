@@ -27,6 +27,10 @@ class PlaceController extends BaseController
         }
         $place = (new PlaceModel())->find($id);
         $reviews = (new ReviewModel())->forPlace($id);
-        $this->view('user/place.php', ['place' => $place, 'reviews' => $reviews]);
+        $user = null;
+        if (!empty($_SESSION['user_id'])) {
+            $user = (new UserModel())->findById($_SESSION['user_id']);
+        }
+        $this->view('user/place.php', ['place' => $place, 'reviews' => $reviews, 'user' => $user]);
     }
 }

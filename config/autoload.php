@@ -21,10 +21,10 @@ spl_autoload_register(function ($class) {
 
 session_start();
 
-/**
- * Resolve a logical table name to the actual table name present in the database.
- * Tries common English names first, then Portuguese names used by provided SQL.
- */
+if (file_exists(__DIR__ . '/local.php')) {
+    require_once __DIR__ . '/local.php';
+}
+
 function tableName(string $logical)
 {
     static $map = [
