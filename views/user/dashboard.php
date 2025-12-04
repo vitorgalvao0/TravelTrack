@@ -6,7 +6,9 @@
     <p class="text-muted">Bem-vindo ao TravelTrack</p>
   </div>
   <div class="text-end">
-    <div class="points-badge">Pts <span><?php echo $user['points'] ?? 0; ?></span></div>
+    <?php if (!empty($_SESSION['user_id'])): ?>
+      <div class="points-badge">Pts <span><?php echo $user['points'] ?? 0; ?></span></div>
+    <?php endif; ?>
     <a class="btn btn-outline-success mt-2" href="index.php?page=qr">Escanear QR Code</a>
   </div>
 </div>

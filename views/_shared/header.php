@@ -26,7 +26,11 @@
         <li class="nav-item"><a class="nav-link" href="index.php?page=history">Histórico</a></li>
         <li class="nav-item"><a class="nav-link" href="index.php?page=qr">QR</a></li>
         <?php if (!empty($_SESSION['user_id'])): ?>
-          <li class="nav-item"><a class="nav-link" href="index.php?page=admin">Admin</a></li>
+          <?php 
+            $user = (new UserModel())->findById($_SESSION['user_id']);
+            if ($user['is_admin']):?>
+            <li class="nav-item"><a class="nav-link" href="index.php?page=admin">Admin</a></li>
+          <?php endif; ?>
           <li class="nav-item"><a class="nav-link" href="#" id="logoutBtn">Sair</a></li>
         <?php else: ?>
           <li class="nav-item"><a class="nav-link" href="index.php?page=login">Entrar</a></li>
