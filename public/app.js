@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function(){
   if (logoutBtn) {
     logoutBtn.addEventListener('click', function(e){
       e.preventDefault();
-      // simple logout: clear session via a hidden form request
       fetch('index.php?page=auth&action=logout',{method:'POST'}).catch(()=>location.href='index.php?page=login');
       location.href='index.php?page=login';
     });

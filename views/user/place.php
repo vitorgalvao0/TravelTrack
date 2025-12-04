@@ -24,7 +24,41 @@
   </div>
 </div>
 
-<h4>Avaliações</h4>
+      <!-- Minimap base: container e dados para uso pelo JS -->
+      <div id="miniMapWrapper" class="mb-3">
+        <h5>Localização</h5>
+        <div id="miniMap" class="minimap" style="width:100%;height:220px;border:1px solid #ddd;border-radius:4px;background:#f6f6f6;display:flex;align-items:center;justify-content:center;">
+          <span class="text-muted">Minimapa carregando...</span>
+        </div>
+        <?php
+          $dest_parts = [];
+          $dest_parts[] = $place['name'] ?? '';
+          $dest_parts[] = $place['logradouro'] ?? '';
+          if (!empty($place['numero_casa'])) $dest_parts[] = $place['numero_casa'];
+          $dest_parts[] = $place['city'] ?? '';
+          $dest_parts[] = $place['state'] ?? '';
+          $destination_address = trim(implode(', ', array_filter($dest_parts, function($v){ return trim((string)$v) !== ''; }))); 
+
+          $user_origin = 'Senac Hub Academy, Campo Grande, MS';
+          if (!empty($user) && is_array($user)) {
+            $orig_parts = [];
+            $orig_parts[] = $user['logradouro'] ?? '';
+            if (!empty($user['numero_casa'])) $orig_parts[] = $user['numero_casa'];
+            $orig_parts[] = $user['city'] ?? '';
+            $orig_parts[] = $user['state'] ?? '';
+            $tmp = trim(implode(', ', array_filter($orig_parts, function($v){ return trim((string)$v) !== ''; })));
+            if ($tmp !== '') $user_origin = $tmp;
+          }
+        ?>
+        <div id="miniMapData" style="display:none;"
+             data-lat="<?php echo htmlspecialchars($place['latitude'] ?? $place['lat'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+             data-lng="<?php echo htmlspecialchars($place['longitude'] ?? $place['lng'] ?? $place['lon'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+             data-destination-address="<?php echo htmlspecialchars($destination_address, ENT_QUOTES, 'UTF-8'); ?>"
+             data-origin-address="<?php echo htmlspecialchars($user_origin, ENT_QUOTES, 'UTF-8'); ?>">
+        </div>
+      </div>
+
+      <h4>Avaliações</h4>
 <?php if (empty($reviews)): ?>
   <p class="text-muted">Nenhuma avaliação ainda. Seja o primeiro!</p>
 <?php endif; ?>

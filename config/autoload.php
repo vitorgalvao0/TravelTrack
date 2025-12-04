@@ -1,5 +1,4 @@
 <?php
-// Basic autoloader and constants
 require_once __DIR__ . '/database.php';
 
 define('BASE_PATH', __DIR__ . '/..');
@@ -22,10 +21,10 @@ spl_autoload_register(function ($class) {
 
 session_start();
 
-/**
- * Resolve a logical table name to the actual table name present in the database.
- * Tries common English names first, then Portuguese names used by provided SQL.
- */
+if (file_exists(__DIR__ . '/local.php')) {
+    require_once __DIR__ . '/local.php';
+}
+
 function tableName(string $logical)
 {
     static $map = [
@@ -40,7 +39,7 @@ function tableName(string $logical)
     try {
         $db = (new Database())->conectar();
     } catch (Exception $e) {
-        return $logical; // fallback
+        return $logical;
     }
 
     $candidates = $map[$logical] ?? [$logical];
@@ -52,7 +51,7 @@ function tableName(string $logical)
                 return $t;
             }
         } catch (Exception $e) {
-            // ignore and try next
+            continue;
         }
     }
 

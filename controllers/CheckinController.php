@@ -19,7 +19,6 @@ class CheckinController extends BaseController
             }
             $points = $place['points'] ?? 0;
             (new CheckinModel())->create(['user_id'=>$user_id,'place_id'=>$place_id,'points'=>$points]);
-            // add points to user (usuario.pontos_totais)
             $db = (new Database())->conectar();
             $stmt = $db->prepare('UPDATE usuario SET pontos_totais = COALESCE(pontos_totais,0) + :p WHERE id_usuario = :id');
             $stmt->execute(['p'=>$points,'id'=>$user_id]);

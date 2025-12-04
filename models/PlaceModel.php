@@ -18,11 +18,13 @@ class PlaceModel
                 $out[] = [
                     'id' => $r['id_estab'] ?? $r['id'] ?? null,
                     'name' => $r['nome'] ?? $r['name'] ?? '',
-                    'city' => $r['endereco'] ?? $r['city'] ?? '',
-                    'state' => $r['estado'] ?? $r['state'] ?? '',
+                    'logradouro' => $r['logradouro'] ?? $r['endereco'] ?? '',
+                    'numero_casa' => $r['numero_casa'] ?? $r['numero'] ?? null,
+                    'city' => $r['cidade'] ?? $r['endereco'] ?? '',
+                    'state' => $r['uf'] ?? $r['estado'] ?? '',
                     'description' => $r['descricao'] ?? $r['description'] ?? '',
                     'sustainability_level' => $r['sustainability_level'] ?? $r['nivel_sustentabilidade'] ?? 3,
-                    'points' => $r['points'] ?? $r['pontos'] ?? $r['pontos_gerados'] ?? 0,
+                    'points' => $r['pontos_base'] ?? $r['points'] ?? $r['pontos'] ?? 0,
                     'image' => $r['image'] ?? null,
                 ];
             }
@@ -42,11 +44,13 @@ class PlaceModel
             return [
                 'id' => $r['id_estab'],
                 'name' => $r['nome'],
-                'city' => $r['endereco'] ?? '',
-                'state' => $r['estado'] ?? '',
-                'description' => $r['descricao'] ?? '',
+                'logradouro' => $r['logradouro'] ?? $r['endereco'] ?? '',
+                'numero_casa' => $r['numero_casa'] ?? $r['numero'] ?? null,
+                'city' => $r['cidade'] ?? $r['endereco'] ?? '',
+                'state' => $r['uf'] ?? $r['estado'] ?? '',
+                'description' => $r['descricao'] ?? $r['description'] ?? '',
                 'sustainability_level' => $r['sustainability_level'] ?? 3,
-                'points' => $r['points'] ?? $r['pontos'] ?? 0,
+                'points' => $r['pontos_base'] ?? $r['points'] ?? $r['pontos'] ?? 0,
                 'image' => $r['image'] ?? null,
             ];
         } catch (PDOException $e) {
@@ -57,12 +61,17 @@ class PlaceModel
     public function create($data)
     {
         try {
-            $stmt = $this->db->prepare('INSERT INTO estabelecimento (nome,endereco,descricao,tipo) VALUES (:nome,:endereco,:descricao,:tipo)');
+            $stmt = $this->db->prepare('INSERT INTO estabelecimento (nome,logradouro,numero_casa,cidade,uf,cep,descricao,tipo,pontos_base) VALUES (:nome,:logradouro,:numero_casa,:cidade,:uf,:cep,:descricao,:tipo,:pontos_base)');
             return $stmt->execute([
                 'nome' => $data['name'] ?? $data['nome'] ?? '',
-                'endereco' => $data['city'] ?? $data['endereco'] ?? '',
+                'logradouro' => $data['logradouro'] ?? $data['endereco'] ?? '',
+                'numero_casa' => $data['numero_casa'] ?? $data['numero'] ?? null,
+                'cidade' => $data['city'] ?? $data['cidade'] ?? '',
+                'uf' => $data['state'] ?? $data['uf'] ?? '',
+                'cep' => $data['cep'] ?? '',
                 'descricao' => $data['description'] ?? $data['descricao'] ?? '',
                 'tipo' => $data['tipo'] ?? 'turistico',
+                'pontos_base' => $data['points'] ?? $data['pontos_base'] ?? $data['pontos'] ?? 0,
             ]);
         } catch (PDOException $e) {
             return false;
@@ -73,12 +82,17 @@ class PlaceModel
     {
         $data['id'] = $id;
         try {
-            $stmt = $this->db->prepare('UPDATE estabelecimento SET nome=:nome,endereco=:endereco,descricao=:descricao WHERE id_estab=:id');
+            $stmt = $this->db->prepare('UPDATE estabelecimento SET nome=:nome,logradouro=:logradouro,numero_casa=:numero_casa,cidade=:cidade,uf=:uf,cep=:cep,descricao=:descricao,pontos_base=:pontos_base WHERE id_estab=:id');
             return $stmt->execute([
                 'id' => $id,
                 'nome' => $data['name'] ?? $data['nome'] ?? '',
-                'endereco' => $data['city'] ?? $data['endereco'] ?? '',
+                'logradouro' => $data['logradouro'] ?? $data['endereco'] ?? '',
+                'numero_casa' => $data['numero_casa'] ?? $data['numero'] ?? null,
+                'cidade' => $data['city'] ?? $data['cidade'] ?? '',
+                'uf' => $data['state'] ?? $data['uf'] ?? '',
+                'cep' => $data['cep'] ?? '',
                 'descricao' => $data['description'] ?? $data['descricao'] ?? '',
+                'pontos_base' => $data['points'] ?? $data['pontos_base'] ?? 0,
             ]);
         } catch (PDOException $e) {
             return false;

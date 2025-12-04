@@ -4,7 +4,6 @@ require_once __DIR__ . '/config/autoload.php';
 $page = $_GET['page'] ?? 'home';
 $action = $_GET['action'] ?? null;
 
-// Simple router
 switch ($page) {
     case 'login':
         (new AuthController())->showLogin();
