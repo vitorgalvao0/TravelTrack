@@ -51,6 +51,12 @@ switch ($page) {
     case 'admin_reviews':
         (new AdminController())->reviews();
         break;
+    case 'profile':
+        (new ProfileController())->show();
+        break;
+    case 'update_profile':
+        (new ProfileController())->update();
+        break;
     case 'qr':
         include VIEW_PATH . '/qr.php';
         break;

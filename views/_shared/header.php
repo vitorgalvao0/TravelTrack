@@ -20,7 +20,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navmenu">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto" style="gap: 0.5rem;">
         <li class="nav-item"><a class="nav-link" href="index.php?page=places">Locais</a></li>
         <li class="nav-item"><a class="nav-link" href="index.php?page=rewards">Recompensas</a></li>
         <li class="nav-item"><a class="nav-link" href="index.php?page=history">Histórico</a></li>
@@ -31,6 +31,7 @@
             if ($user['is_admin']):?>
             <li class="nav-item"><a class="nav-link" href="index.php?page=admin">Admin</a></li>
           <?php endif; ?>
+          <li class="nav-item"><a class="nav-link" href="index.php?page=profile">Perfil</a></li>
           <li class="nav-item"><a class="nav-link" href="#" id="logoutBtn">Sair</a></li>
         <?php else: ?>
           <li class="nav-item"><a class="nav-link" href="index.php?page=login">Entrar</a></li>
