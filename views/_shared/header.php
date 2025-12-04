@@ -41,3 +41,16 @@
   </div>
 </nav>
 <main class="container py-4">
+<?php if (!empty($_SESSION['flash'])): ?>
+  <div aria-live="polite" aria-atomic="true" style="position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 300px;">
+    <div class="toast show align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          <?= htmlspecialchars($_SESSION['flash']) ?>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+  <?php unset($_SESSION['flash']); ?>
+<?php endif; ?>
