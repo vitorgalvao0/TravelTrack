@@ -1,5 +1,4 @@
 <?php
-// Basic autoloader and constants
 require_once __DIR__ . '/database.php';
 
 define('BASE_PATH', __DIR__ . '/..');
@@ -40,7 +39,7 @@ function tableName(string $logical)
     try {
         $db = (new Database())->conectar();
     } catch (Exception $e) {
-        return $logical; // fallback
+        return $logical;
     }
 
     $candidates = $map[$logical] ?? [$logical];
@@ -52,7 +51,7 @@ function tableName(string $logical)
                 return $t;
             }
         } catch (Exception $e) {
-            // ignore and try next
+            continue;
         }
     }
 
