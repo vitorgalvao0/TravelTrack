@@ -29,7 +29,7 @@ class ProfileController extends BaseController
         ];
         (new UserModel())->update($id, $data);
         $_SESSION['flash'] = 'Perfil atualizado com sucesso!';
-        header('Location: index.php?page=profile');
+        header('Location: index.php?page=dashboard');
         exit;
     }
 }

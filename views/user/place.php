@@ -3,7 +3,8 @@
 <div class="card mb-3 place-detail-card">
   <div class="row g-0">
     <div class="col-md-5">
-      <img src="public/images/place-placeholder.jpg" class="img-fluid rounded-start" alt="<?php echo $place['name']; ?>">
+      <?php $img = !empty($place['imagem']) ? 'upload/' . $place['imagem'] : 'public/images/place-placeholder.jpg'; ?>
+      <img src="<?= $img ?>" class="img-fluid rounded-start" alt="<?php echo $place['name']; ?>">
     </div>
     <div class="col-md-7">
       <div class="card-body">
@@ -11,14 +12,25 @@
         <p class="text-muted"><?php echo $place['city']; ?> - <?php echo $place['state']; ?></p>
         <p><?php echo $place['description']; ?></p>
         <div class="mb-3">
-          <span class="badge bg-success">Sustentabilidade: <?php echo $place['sustainability_level']; ?></span>
+          <span class="badge bg-success">Sustentabilidade: <?php echo $place['sustentabilidade']; ?></span>
           <span class="badge bg-info text-dark ms-2"><?php echo $place['points']; ?> pts por check-in</span>
         </div>
         <form method="post" action="index.php?page=checkin&action=do">
           <input type="hidden" name="place_id" value="<?php echo $place['id']; ?>">
           <button class="btn btn-success">Fazer Check-in</button>
           <a href="#reviewForm" class="btn btn-outline-secondary ms-2">Avaliar Local</a>
+          <?php if (!empty($_SESSION['user_id'])): ?>
+            <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#shoppingModal<?php echo $place['id']; ?>">
+              Comprar
+            </button>
+          <?php else: ?>
+            <a href="index.php?page=login" class="btn btn-primary ms-2">Comprar</a>
+          <?php endif; ?>
         </form>
+        <?php if (!empty($_SESSION['user_id'])): ?>
+          <!-- Carrega o modal com a variável $place renomeada temporariamente para $p -->
+          <?php $p = $place; include VIEW_PATH . '/_shared/shopping_modal.php'; ?>
+        <?php endif; ?>
       </div>
     </div>
   </div>
