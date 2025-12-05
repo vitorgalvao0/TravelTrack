@@ -25,7 +25,7 @@ class PlaceModel
                     'description' => $r['descricao'] ?? $r['description'] ?? '',
                     'sustainability_level' => $r['sustainability_level'] ?? $r['nivel_sustentabilidade'] ?? 3,
                     'points' => $r['pontos_base'] ?? $r['points'] ?? $r['pontos'] ?? 0,
-                    'image' => $r['image'] ?? null,
+                    'imagem' => $r['imagem'] ?? $r['image'] ?? null,
                 ];
             }
             return $out;
@@ -51,7 +51,7 @@ class PlaceModel
                 'description' => $r['descricao'] ?? $r['description'] ?? '',
                 'sustainability_level' => $r['sustainability_level'] ?? 3,
                 'points' => $r['pontos_base'] ?? $r['points'] ?? $r['pontos'] ?? 0,
-                'image' => $r['image'] ?? null,
+                'imagem' => $r['imagem'] ?? $r['image'] ?? null,
             ];
         } catch (PDOException $e) {
             return false;
@@ -94,6 +94,16 @@ class PlaceModel
                 'descricao' => $data['description'] ?? $data['descricao'] ?? '',
                 'pontos_base' => $data['points'] ?? $data['pontos_base'] ?? 0,
             ]);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public function setImage($id, $filename)
+    {
+        try {
+            $stmt = $this->db->prepare('UPDATE estabelecimento SET imagem = :imagem WHERE id_estab = :id');
+            return $stmt->execute(['imagem' => $filename, 'id' => $id]);
         } catch (PDOException $e) {
             return false;
         }

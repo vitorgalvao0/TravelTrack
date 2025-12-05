@@ -99,6 +99,12 @@ switch ($page) {
     case 'update_profile':
         (new ProfileController())->update();
         break;
+    case 'upload_image_form':
+        (new UploadController())->form();
+        break;
+    case 'upload_image':
+        (new UploadController())->handle();
+        break;
     default:
         (new PlaceController())->dashboard();
 }

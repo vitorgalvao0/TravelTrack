@@ -31,7 +31,8 @@ CREATE TABLE estabelecimento (
     uf VARCHAR(2),
     cep VARCHAR(8),
     pontos_base INT,
-    tipo VARCHAR(50)
+    tipo VARCHAR(50),
+    imagem VARCHAR(255)
 );
 
 -- ============================
@@ -108,14 +109,14 @@ VALUES
 -- ============================
 -- ESTABELECIMENTOS TURÍSTICOS DO MS
 -- ============================
-INSERT INTO estabelecimento (nome, descricao, logradouro, numero_casa, cidade, uf, cep, pontos_base, tipo)
+INSERT INTO estabelecimento (nome, descricao, logradouro, numero_casa, cidade, uf, cep, pontos_base, tipo, imagem)
 VALUES
-('Parque das Nações Indígenas', 'Um dos maiores parques urbanos do Brasil, excelente para caminhada.', 'Av Afonso Pena', 7000, 'Campo Grande', 'MS', '79002160', 50, 'parque'),
-('Bioparque Pantanal', 'Maior aquário de água doce do mundo, destaque da cidade.', 'Av Afonso Pena', 6000, 'Campo Grande', 'MS', '79002000', 80, 'aquário'),
-('Morada dos Baís', 'Ponto histórico com apresentações culturais e gastronomia.', 'Av Noroeste', 5140, 'Campo Grande', 'MS', '79004500', 40, 'centro cultural'),
-('Praça das Araras', 'Praça famosa com a escultura das araras e ponto turístico clássico.', 'Rua 14 de Julho', 3000, 'Campo Grande', 'MS', '79002010', 30, 'praça'),
-('Buraco das Araras', 'Imensa dolina natural com rica biodiversidade.', NULL, NULL, 'Jardim', 'MS', '79460000', 120, 'atração natural'),
-('Bonito - Gruta do Lago Azul', 'Principal cartão-postal de Bonito, famoso lago azul profundo.', NULL, NULL, 'Bonito', 'MS', '79290000', 150, 'gruta');
+('Parque das Nações Indígenas', 'Um dos maiores parques urbanos do Brasil, excelente para caminhada.', 'Av Afonso Pena', 7000, 'Campo Grande', 'MS', '79002160', 50, 'parque', 'parque-nacoes-indigenas.jpg'),
+('Bioparque Pantanal', 'Maior aquário de água doce do mundo, destaque da cidade.', 'Av Afonso Pena', 6000, 'Campo Grande', 'MS', '79002000', 80, 'aquário', 'bioparque-pantanal.jpg'),
+('Morada dos Baís', 'Ponto histórico com apresentações culturais e gastronomia.', 'Av Noroeste', 5140, 'Campo Grande', 'MS', '79004500', 40, 'centro cultural', 'morada-dos-bais.jpg'),
+('Praça das Araras', 'Praça famosa com a escultura das araras e ponto turístico clássico.', 'Rua 14 de Julho', 3000, 'Campo Grande', 'MS', '79002010', 30, 'praça', 'praca-das-araras.jpg'),
+('Buraco das Araras', 'Imensa dolina natural com rica biodiversidade.', NULL, NULL, 'Jardim', 'MS', '79460000', 120, 'atração natural', 'buraco-das-araras.jpg'),
+('Bonito - Gruta do Lago Azul', 'Principal cartão-postal de Bonito, famoso lago azul profundo.', NULL, NULL, 'Bonito', 'MS', '79290000', 150, 'gruta', 'gruta-lago-azul.jpg');
 
 -- ============================
 -- AVALIAÇÕES (2 POR ESTABELECIMENTO)

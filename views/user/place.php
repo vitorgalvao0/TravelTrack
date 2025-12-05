@@ -3,7 +3,8 @@
 <div class="card mb-3 place-detail-card">
   <div class="row g-0">
     <div class="col-md-5">
-      <img src="public/images/place-placeholder.jpg" class="img-fluid rounded-start" alt="<?php echo $place['name']; ?>">
+      <?php $img = !empty($place['imagem']) ? 'upload/' . $place['imagem'] : 'public/images/place-placeholder.jpg'; ?>
+      <img src="<?= $img ?>" class="img-fluid rounded-start" alt="<?php echo $place['name']; ?>">
     </div>
     <div class="col-md-7">
       <div class="card-body">
