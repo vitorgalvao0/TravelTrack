@@ -12,7 +12,7 @@
         <p class="text-muted"><?php echo $place['city']; ?> - <?php echo $place['state']; ?></p>
         <p><?php echo $place['description']; ?></p>
         <div class="mb-3">
-          <span class="badge bg-success">Sustentabilidade: <?php echo $place['sustainability_level']; ?></span>
+          <span class="badge bg-success">Sustentabilidade: <?php echo $place['sustentabilidade']; ?></span>
           <span class="badge bg-info text-dark ms-2"><?php echo $place['points']; ?> pts por check-in</span>
         </div>
         <form method="post" action="index.php?page=checkin&action=do">

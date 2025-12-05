@@ -52,9 +52,26 @@ class AdminController extends BaseController
             'description' => $_POST['description'] ?? '',
             'tipo' => $_POST['tipo'] ?? 'turistico',
             'points' => isset($_POST['pontos_base']) ? (int)$_POST['pontos_base'] : 0,
+            'sustentabilidade' => isset($_POST['sustentabilidade']) ? (int)$_POST['sustentabilidade'] : 3,
         ];
-        $ok = (new PlaceModel())->create($data);
-        $_SESSION['flash'] = $ok ? 'Local criado com sucesso.' : 'Erro ao criar local.';
+        $result = (new PlaceModel())->create($data);
+        if ($result === false) {
+            $_SESSION['flash'] = 'Erro ao criar local.';
+            header('Location: index.php?page=admin_places');
+            exit;
+        }
+        // se houver upload de imagem no form, processa e salva
+        if (!empty($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+            $file = $_FILES['imagem'];
+            $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+            $safe = preg_replace('/[^a-z0-9\-_\.]/i', '_', pathinfo($file['name'], PATHINFO_FILENAME));
+            $filename = $safe . '_' . time() . '.' . $ext;
+            $dst = __DIR__ . '/../upload/' . $filename;
+            if (move_uploaded_file($file['tmp_name'], $dst)) {
+                (new PlaceModel())->setImage($result, $filename);
+            }
+        }
+        $_SESSION['flash'] = 'Local criado com sucesso.';
         header('Location: index.php?page=admin_places');
         exit;
     }
@@ -101,8 +118,20 @@ class AdminController extends BaseController
             'description' => $_POST['description'] ?? '',
             'tipo' => $_POST['tipo'] ?? 'turistico',
             'points' => isset($_POST['pontos_base']) ? (int)$_POST['pontos_base'] : 0,
+            'sustentabilidade' => isset($_POST['sustentabilidade']) ? (int)$_POST['sustentabilidade'] : 3,
         ];
         $ok = (new PlaceModel())->update($id, $data);
+        // se houver upload de imagem no form, processa e salva
+        if (!empty($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+            $file = $_FILES['imagem'];
+            $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+            $safe = preg_replace('/[^a-z0-9\-_\.]/i', '_', pathinfo($file['name'], PATHINFO_FILENAME));
+            $filename = $safe . '_' . time() . '.' . $ext;
+            $dst = __DIR__ . '/../upload/' . $filename;
+            if (move_uploaded_file($file['tmp_name'], $dst)) {
+                (new PlaceModel())->setImage($id, $filename);
+            }
+        }
         $_SESSION['flash'] = $ok ? 'Local atualizado.' : 'Erro ao atualizar local.';
         header('Location: index.php?page=admin_places');
         exit;

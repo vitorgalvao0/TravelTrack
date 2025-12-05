@@ -12,7 +12,7 @@
           <p class="text-muted"><?php echo $p['city']; ?> - <?php echo $p['state']; ?></p>
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <span class="badge bg-success">Sustentabilidade: <?php echo $p['sustainability_level']; ?></span>
+              <span class="badge bg-success">Sustentabilidade: <?php echo $p['sustentabilidade']; ?></span>
               <span class="badge bg-info text-dark ms-1"><?php echo $p['points']; ?> pts</span>
             </div>
             <div class="d-flex gap-2">

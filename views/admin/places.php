@@ -17,7 +17,7 @@
           <?php echo htmlspecialchars($p['name']); ?>
         </td>
         <td><?php echo htmlspecialchars($p['city']); ?></td>
-        <td><?php echo htmlspecialchars($p['sustainability_level']); ?></td>
+        <td><?php echo htmlspecialchars($p['sustentabilidade']); ?></td>
         <td><?php echo htmlspecialchars($p['points']); ?></td>
         <td>
           <a class="btn btn-sm btn-primary" href="index.php?page=admin_place_edit&id=<?php echo urlencode($p['id']); ?>">Editar</a>
