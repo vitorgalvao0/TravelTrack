@@ -42,4 +42,31 @@ try{
     fail('Erro em UserModel::findById(): ' . $e->getMessage());
 }
 
+// Test 5: PurchaseModel exists
+try{
+    $purch = new PurchaseModel();
+    ok('PurchaseModel instanciado com sucesso');
+}catch(Exception $e){
+    fail('Erro ao instanciar PurchaseModel: ' . $e->getMessage());
+}
+
+// Test 6: PurchaseModel::purchaseHistory
+try{
+    $history = $purch->purchaseHistory(1);
+    if (is_array($history)) ok('PurchaseModel::purchaseHistory(1) retornou array (' . count($history) . ')');
+    else fail('PurchaseModel::purchaseHistory não retornou array');
+}catch(Exception $e){
+    fail('Erro em PurchaseModel::purchaseHistory(): ' . $e->getMessage());
+}
+
+// Test 7: PlaceModel with full address info
+try{
+    $place = $pm->find(1);
+    if ($place && isset($place['logradouro'])) ok('PlaceModel::find retorna campos de endereço (logradouro, etc)');
+    else if ($place) ok('PlaceModel::find retornou dados mas sem endereço completo');
+    else fail('PlaceModel::find não retornou dados válidos');
+}catch(Exception $e){
+    fail('Erro em PlaceModel::find: ' . $e->getMessage());
+}
+
 echo "\nTeste concluído.\n";

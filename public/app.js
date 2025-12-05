@@ -7,16 +7,4 @@ document.addEventListener('DOMContentLoaded', function(){
       location.href='index.php?page=login';
     });
   }
-
-  const copyBtn = document.getElementById('copyQr');
-  if (copyBtn) {
-    copyBtn.addEventListener('click', function(){
-      const input = document.getElementById('qrLink');
-      input.select();
-      document.execCommand('copy');
-      copyBtn.textContent = 'Copiado';
-      setTimeout(()=>copyBtn.textContent='Copiar link',1500);
-    });
-  }
-
 });

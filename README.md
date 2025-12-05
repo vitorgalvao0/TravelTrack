@@ -182,10 +182,11 @@ Se logado como admin (ID 1 - João):
 - **Detalhes + Mapa**: Ver local selecionado com mapa interativo (Google Maps) e rota até lá
 - **Check-in**: Registrar presença em um local e ganhar pontos
 - **Avaliações**: Deixar notas e comentários sobre locais visitados
+- **🆕 Sistema de Compra Dual**:
+  - **Trocar com Pontos**: Use seus pontos acumulados para "comprar" uma experiência
+  - **Comprar com Dinheiro**: Pague de verdade e receba 10 pontos por real gasto! 💰
+- **Histórico de Compras**: Ver todas as compras (pontos e dinheiro) com detalhes
 - **Recompensas**: Visualizar prêmios disponíveis e resgatar com pontos acumulados
-- **Histórico**: Ver todos os check-ins realizados
-- **QR Code**: Gerar QR code com link de compartilhamento (futuro: verificação de presença)
-- **Perfil**: Atualizar dados pessoais e endereço
 
 ### 🛠️ Para Administradores
 
@@ -197,9 +198,13 @@ Se logado como admin (ID 1 - João):
 ### 🗺️ Recursos Técnicos
 
 - **Google Maps Integration**: Exibe rota interativa do usuário até o local
-- **Sistema de Pontos**: Gamificação com check-ins, resgate de recompensas
+- **Sistema de Pontos Gamificado**: 
+  - Check-ins ganham pontos
+  - Compras com dinheiro ganham pontos (1 real = 10 pontos)
+  - Trocas com pontos existentes
 - **Autenticação**: Login seguro com sessão PHP
 - **Responsivo**: Interface adaptada para mobile, tablet e desktop (Bootstrap 5)
+- **Modal de Compra**: Interface intuitiva com abas para escolher tipo de compra
 
 ---
 
@@ -276,7 +281,6 @@ TravelTrack/
 │   ├── _shared/
 │   │   ├── header.php         # Menu + navbar
 │   │   └── footer.php         # Rodapé + scripts
-│   ├── qr.php                 # Gerador de QR code
 │   └── 404.php                # Página de erro
 ├── public/
 │   ├── styles.css             # CSS customizado
@@ -357,7 +361,6 @@ private $password = "";           // Senha (vazia por padrão no XAMPP)
 
 ## 📝 Próximos Passos / Melhorias
 
-- [ ] Implementar verificação de QR code in loco (beacon ou GPS)
 - [ ] Integrar pagamento para resgate de recompensas
 - [ ] Sistema de notificações (email, push)
 - [ ] API REST para mobile app

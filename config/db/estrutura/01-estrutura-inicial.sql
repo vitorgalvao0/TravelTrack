@@ -65,3 +65,17 @@ CREATE TABLE resgate_pontos (
     id_recompensa INT NOT NULL REFERENCES recompensa(id_recompensa),
     data_resgate TIMESTAMP DEFAULT NOW()
 );
+
+-- ============================
+-- TABELA COMPRA DE EXPERIENCIA
+-- ============================
+CREATE TABLE compra_experiencia (
+    id_compra SERIAL PRIMARY KEY,
+    id_usuario INT NOT NULL REFERENCES usuario(id_usuario),
+    id_estab INT NOT NULL REFERENCES estabelecimento(id_estab),
+    tipo_compra VARCHAR(20) NOT NULL DEFAULT 'pontos',
+    valor_gasto DECIMAL(10, 2) NOT NULL,
+    pontos_recebidos INT DEFAULT 0,
+    valor_real DECIMAL(10, 2) DEFAULT 0,
+    data_compra TIMESTAMP DEFAULT NOW()
+);
