@@ -152,25 +152,6 @@ http://localhost/TravelTrack/
 
 Você será redirecionado para o dashboard de turistas.
 
-### 3. Fazer Login
-
-Use um dos usuários de exemplo:
-
-| Email | Senha | Tipo |
-|-------|-------|------|
-| joao@gmail.com | 123 | Turista |
-| maria@gmail.com | 123 | Turista |
-| carlos@gmail.com | 123 | Turista |
-| pedro@gmail.com | 123 | Turista (Pode ser ADM*) |
-
-*O usuário ID 1 (João) é configurado como ADM por padrão. Para trocar, edite a senha ou crie um novo admin.
-
-### 4. Acessar Admin (Opcional)
-
-Se logado como admin (ID 1 - João):
-1. Clique em **Admin** (no menu)
-2. Gerencie locais, recompensas, avaliações e reviews
-
 ---
 
 ## ✨ Funcionalidades
