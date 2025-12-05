@@ -14,16 +14,17 @@
 
 <h4>Locais próximos</h4>
 <div class="row g-4">
-  <?php foreach ($places as $p): ?>
+    <?php foreach ($places as $p): ?>
     <div class="col-12 col-sm-6 col-lg-4">
       <div class="card place-card h-100">
-        <img src="public/images/place-placeholder.jpg" class="card-img-top" alt="<?php echo $p['name']; ?>">
+            <?php $img = !empty($p['imagem']) ? 'upload/' . $p['imagem'] : 'public/images/place-placeholder.jpg'; ?>
+            <img src="<?= $img ?>" class="card-img-top" alt="<?php echo $p['name']; ?>">
         <div class="card-body">
           <h5 class="card-title"><?php echo $p['name']; ?></h5>
           <p class="card-text text-muted"><?php echo $p['city']; ?> - <?php echo $p['state']?></p>
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <span class="badge bg-success">Sustentabilidade: <?php echo $p['sustainability_level']; ?></span>
+              <span class="badge bg-success">Sustentabilidade: <?php echo $p['sustentabilidade']; ?></span>
               <span class="badge bg-info text-dark ms-1"><?php echo $p['points']; ?> pts</span>
             </div>
             <div class="d-flex gap-2">

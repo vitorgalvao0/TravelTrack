@@ -3,7 +3,8 @@
 <div class="card mb-3 place-detail-card">
   <div class="row g-0">
     <div class="col-md-5">
-      <img src="public/images/place-placeholder.jpg" class="img-fluid rounded-start" alt="<?php echo $place['name']; ?>">
+      <?php $img = !empty($place['imagem']) ? 'upload/' . $place['imagem'] : 'public/images/place-placeholder.jpg'; ?>
+      <img src="<?= $img ?>" class="img-fluid rounded-start" alt="<?php echo $place['name']; ?>">
     </div>
     <div class="col-md-7">
       <div class="card-body">
@@ -11,7 +12,7 @@
         <p class="text-muted"><?php echo $place['city']; ?> - <?php echo $place['state']; ?></p>
         <p><?php echo $place['description']; ?></p>
         <div class="mb-3">
-          <span class="badge bg-success">Sustentabilidade: <?php echo $place['sustainability_level']; ?></span>
+          <span class="badge bg-success">Sustentabilidade: <?php echo $place['sustentabilidade']; ?></span>
           <span class="badge bg-info text-dark ms-2"><?php echo $place['points']; ?> pts por check-in</span>
         </div>
         <form method="post" action="index.php?page=checkin&action=do">
