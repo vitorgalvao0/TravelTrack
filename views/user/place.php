@@ -18,7 +18,18 @@
           <input type="hidden" name="place_id" value="<?php echo $place['id']; ?>">
           <button class="btn btn-success">Fazer Check-in</button>
           <a href="#reviewForm" class="btn btn-outline-secondary ms-2">Avaliar Local</a>
+          <?php if (!empty($_SESSION['user_id'])): ?>
+            <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#shoppingModal<?php echo $place['id']; ?>">
+              Comprar
+            </button>
+          <?php else: ?>
+            <a href="index.php?page=login" class="btn btn-primary ms-2">Comprar</a>
+          <?php endif; ?>
         </form>
+        <?php if (!empty($_SESSION['user_id'])): ?>
+          <!-- Carrega o modal com a variável $place renomeada temporariamente para $p -->
+          <?php $p = $place; include VIEW_PATH . '/_shared/shopping_modal.php'; ?>
+        <?php endif; ?>
       </div>
     </div>
   </div>

@@ -24,7 +24,8 @@
         <li class="nav-item"><a class="nav-link" href="index.php?page=places">Locais</a></li>
         <li class="nav-item"><a class="nav-link" href="index.php?page=rewards">Recompensas</a></li>
         <li class="nav-item"><a class="nav-link" href="index.php?page=history">Histórico</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.php?page=qr">QR</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.php?page=purchases">Experiências</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.php?page=shopping_history">Minhas Compras</a></li>
         <?php if (!empty($_SESSION['user_id'])): ?>
           <?php 
             $user = (new UserModel())->findById($_SESSION['user_id']);

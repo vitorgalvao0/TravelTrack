@@ -39,6 +39,21 @@ switch ($page) {
     case 'history':
         (new CheckinController())->history();
         break;
+    case 'purchase':
+        (new PurchaseController())->buy();
+        break;
+    case 'purchases':
+        (new PurchaseController())->purchaseHistory();
+        break;
+    case 'shopping_money':
+        (new ShoppingController())->buyWithMoney();
+        break;
+    case 'shopping_points':
+        (new ShoppingController())->buyWithPoints();
+        break;
+    case 'shopping_history':
+        (new ShoppingController())->history();
+        break;
     case 'admin':
         (new AdminController())->panel();
         break;
@@ -83,9 +98,6 @@ switch ($page) {
         break;
     case 'update_profile':
         (new ProfileController())->update();
-        break;
-    case 'qr':
-        include VIEW_PATH . '/qr.php';
         break;
     default:
         (new PlaceController())->dashboard();
